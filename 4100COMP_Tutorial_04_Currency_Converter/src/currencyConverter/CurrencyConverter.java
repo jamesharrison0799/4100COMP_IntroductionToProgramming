@@ -6,7 +6,6 @@ public class CurrencyConverter {
 	static Scanner console = new Scanner(System.in);
 	public static void main(String[] args) {
 		
-		
 		//2.4d = 1p  1s = 5p        £1(old pound)= 100p
 		
 		System.out.println("Pounds (£): ");
@@ -18,11 +17,7 @@ public class CurrencyConverter {
 		System.out.println("Pence (c): ");
 		int hPence = console.nextInt();
 		
-		
-		double hValuePence = (hPounds*100)+(hShillings*5)+(hPence*2.4);
-		
-		//System.out.println(hValuePence);
-		
+		double hValuePence = (hPounds*100)+(hShillings*5)+(hPence*2.4);		
 		double ukValue = (hValuePence/100) ; //UK Pound 
 		console.close();
 		System.out.printf("Hadean £%d-%ds-%dd == GBP £%.2f", hPounds, hShillings, hPence, ukValue);
