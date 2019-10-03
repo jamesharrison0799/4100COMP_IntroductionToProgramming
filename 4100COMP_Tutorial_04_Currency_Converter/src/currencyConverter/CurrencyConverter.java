@@ -19,13 +19,13 @@ public class CurrencyConverter {
 		int hPence = console.nextInt();
 		
 		
-		double hValuePence = hPence+(hShillings*20)+(hPounds*240);
+		double hValuePence = (hPounds*100)+(hShillings*5)+(hPence*2.4);
 		
-		System.out.println(hValuePence);
+		//System.out.println(hValuePence);
 		
-		double ukValue = hValuePence/2.4 ; 
-		
-		System.out.println("GBP£"+(ukValue/100));
+		double ukValue = (hValuePence/100) ; //UK Pound 
+		console.close();
+		System.out.printf("Hadean £%d-%ds-%dd == GBP £%.2f", hPounds, hShillings, hPence, ukValue);
 		
 		
 		/*
