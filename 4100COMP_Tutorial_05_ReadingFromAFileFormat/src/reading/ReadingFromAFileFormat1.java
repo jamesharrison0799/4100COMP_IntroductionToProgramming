@@ -24,7 +24,7 @@ public class ReadingFromAFileFormat1 {
 		double fullTankCost = (fuelCost * fuelCapacity)/100;
 		double range = (fuelCapacity/litresInGallon)*mpg;
 		System.out.printf("\nIt will cost £%.2f to fuel the vehicle at the specified rates. On average, this"
-				+ " will give the vehicle a range of %.1f miles",fullTankCost,range);
+				+ " will give the vehicle a range of %.1f miles.",fullTankCost,range);
 		
 		//Task 4
 		
@@ -32,5 +32,12 @@ public class ReadingFromAFileFormat1 {
 		write.printf("%s\n%.1f %d %d\n%.1f %.2f",vehicleName,mpg,fuelCapacity,fuelCost,range,fullTankCost);
 		write.close();
 		
+		
+		//Supplementary Task
+		if(mpg>50) {
+			System.out.println("\n\nOn behalf of the environment, thank you for choosing a fuel efficient car!");
+		}else if(mpg<30) {
+			System.out.println("\n\nYou are being chastised for choosing a gas guzziling vehicle!");
+		}
 	}
 }
