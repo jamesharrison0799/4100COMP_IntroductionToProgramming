@@ -20,7 +20,7 @@ public class ReadingFromAFileFormat1 {
 		
 		//Task 3
 		
-		double litresInGallon = 4.54609;
+		final double litresInGallon = 4.54609;
 		double fullTankCost = (fuelCost * fuelCapacity)/100;
 		double range = (fuelCapacity/litresInGallon)*mpg;
 		System.out.printf("\nIt will cost £%.2f to fuel the vehicle at the specified rates. On average, this"
