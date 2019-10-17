@@ -36,7 +36,7 @@ public class SeatDiscount {
 					if(customRate > 0 && customRate < 100) {
 						break;
 					}else {
-						System.out.println("Please enter a number between 0-100");
+						System.out.println("Please enter a number between 0-100.");
 					}
 				}
 				break;
@@ -44,7 +44,7 @@ public class SeatDiscount {
 				useCustomRate = false;
 				break;
 			}else {
-				System.out.println("Please use only 'Y' or 'N' Characters to proceed");
+				System.out.println("Please use only 'Y' or 'N' Characters to proceed.");
 				
 			}
 		}
@@ -85,7 +85,7 @@ public class SeatDiscount {
 				double discount;
 				double seatPrice = Double.parseDouble(lines.get(i+1));
 				
-				//determines value of discount based upon whether useCustomRate is True or False
+				//determines value of discount based upon whether the boolean variable, useCustomRate, is True or False
 				if (useCustomRate == true) {
 					discount = (((seatPrice/10)*customRate)*seatAmount)/10;
 				}else {
