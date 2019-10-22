@@ -2,7 +2,7 @@
 //22/10/2019 - Added input validation into custom rate menu. Program would crash if user entered anything other than 
 // a number when asked to enter their custom discount rate. 
 //Change 23/10/2019
-//Moved if statement the try catch. Removed need for invalidInput variable. 
+//Moved if statement into the try catch. Removed need for invalidInput variable. 
 package seatDiscount;
 
 import java.io.FileReader;
@@ -65,7 +65,7 @@ public class SeatDiscount {
 						
 						
 						//Change 23/10/2019
-						//Moved if statement the try catch. Removed need for invalidInput variable. Functionality remains the same.
+						//Moved if statement into the try catch. Removed need for invalidInput variable. Functionality remains the same.
 						//Not sure why I didn't do this in the first place :/
 						while(true) {
 							System.out.println("Enter Custom Discount Rate Percentage: ");
