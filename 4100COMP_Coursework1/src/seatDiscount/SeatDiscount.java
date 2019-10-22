@@ -1,3 +1,7 @@
+//Changes since first upload
+//22/10/2019 - Added input validation into custom rate menu. Program would crash if user entered anything other than 
+// a number when asked to enter their custom discount rate. 
+
 package seatDiscount;
 
 import java.io.FileReader;
@@ -31,26 +35,51 @@ public class SeatDiscount {
 						//The boolean variable useCustomRate is used so that the programme knows what value to use when calculating discounts later.
 						useCustomRate = true;
 						//Takes custom discount percentage from user. A check is completed to ensure the number is valid. (Floating point number Between 0 and 100)
-												
+						
+						//Change 22/10/2019
+						//The following while loop handles input validation when the user enters their desired custom discount rate.
+						//the boolean variable invalid input is false at the the start of the loop, this is so that the variable gets reset every time input is prompted.
+						//the try catch is used to prevent the program from crashing if the user enters anything other than a double.
+						//if it does catch an exception (InputMismatchException, if text is entered for example) then it will notify the user via the console,
+						//set invalidInput to true, reset the scanner, then continue with the while loop.
+//						while(true) {
+//							invalidInput = false;
+//							System.out.println("Enter Custom Discount Rate Percentage: ");
+//							try {
+//								customRate = console.nextDouble();
+//							}catch(Exception e){
+//								System.out.println("Invalid input" + "( "+e+" )");
+//								invalidInput = true;
+//								console.next();
+//								continue;
+//							}
+//							if(invalidInput == false) {
+//								if(customRate > 0 && customRate < 100) {
+//									break;
+//								}else {
+//									System.out.println("Please enter a number between 0-100.");
+//								}
+//							}
+//						}
+						
 						while(true) {
-							invalidInput = false;
 							System.out.println("Enter Custom Discount Rate Percentage: ");
 							try {
 								customRate = console.nextDouble();
-							}catch(Exception e){
-								System.out.println("Invalid input" + "( "+e+" )");
-								invalidInput = true;
-								console.next();
-								continue;
-							}
-							if(invalidInput == false) {
 								if(customRate > 0 && customRate < 100) {
 									break;
 								}else {
 									System.out.println("Please enter a number between 0-100.");
 								}
+							}catch(Exception e){
+								System.out.println("Invalid input" + "( "+e+" )");
+								console.next();
+								continue;
 							}
 						}
+						
+						
+						
 						
 						break;
 					}else if(customDiscountRate.toUpperCase().equals("N")) {
