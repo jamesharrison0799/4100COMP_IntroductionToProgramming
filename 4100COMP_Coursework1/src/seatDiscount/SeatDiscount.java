@@ -25,24 +25,24 @@ public class SeatDiscount {
 		//boolean invalidInput = false;
 		
 		//Custom Rate Menu
-				while (true) {
-					
-					System.out.println("Specify Custom Discount Rate [Y|N]: ");
-					String customDiscountRate = console.nextLine();
-					
-					// .toUpperCase is used in case the user submits a lower case character.
-					// The OR operator could also be used eg: if (customDiscountRate.equals("Y") || customDiscountRate.equals("y")){}
-					if (customDiscountRate.toUpperCase().equals("Y")) {
-						//The boolean variable useCustomRate is used so that the programme knows what value to use when calculating discounts later.
-						useCustomRate = true;
-						//Takes custom discount percentage from user. A check is completed to ensure the number is valid. (Floating point number Between 0 and 100)
-						
-						//Change 22/10/2019
-						//The following while loop handles input validation when the user enters their desired custom discount rate.
-						//the boolean variable invalid input is false at the the start of the loop, this is so that the variable gets reset every time input is prompted.
-						//the try catch is used to prevent the program from crashing if the user enters anything other than a double.
-						//if it does catch an exception (InputMismatchException, if text is entered for example) then it will notify the user via the console,
-						//set invalidInput to true, reset the scanner, then continue with the while loop.
+		while (true) {
+			
+			System.out.println("Specify Custom Discount Rate [Y|N]: ");
+			String customDiscountRate = console.nextLine();
+			
+			// .toUpperCase is used in case the user submits a lower case character.
+			// The OR operator could also be used eg: if (customDiscountRate.equals("Y") || customDiscountRate.equals("y")){}
+			if (customDiscountRate.toUpperCase().equals("Y")) {
+				//The boolean variable useCustomRate is used so that the programme knows what value to use when calculating discounts later.
+				useCustomRate = true;
+				//Takes custom discount percentage from user. A check is completed to ensure the number is valid. (Floating point number Between 0 and 100)
+				
+				//Change 22/10/2019
+				//The following while loop handles input validation when the user enters their desired custom discount rate.
+				//the boolean variable invalid input is false at the the start of the loop, this is so that the variable gets reset every time input is prompted.
+				//the try catch is used to prevent the program from crashing if the user enters anything other than a double.
+				//if it does catch an exception (InputMismatchException, if text is entered for example) then it will notify the user via the console,
+				//set invalidInput to true, reset the scanner, then continue with the while loop.
 //						while(true) {
 //							invalidInput = false;
 //							System.out.println("Enter Custom Discount Rate Percentage: ");
@@ -62,39 +62,39 @@ public class SeatDiscount {
 //								}
 //							}
 //						}
-						
-						
-						//Change 23/10/2019
-						//Moved if statement into the try catch. Removed need for invalidInput variable. Functionality remains the same.
-						//Not sure why I didn't do this in the first place :/
-						while(true) {
-							System.out.println("Enter Custom Discount Rate Percentage: ");
-							try {
-								customRate = console.nextDouble();
-								if(customRate > 0 && customRate < 100) {
-									break;
-								}else {
-									System.out.println("Please enter a number between 0-100.");
-								}
-							}catch(Exception e){
-								System.out.println("Invalid input" + "( "+e+" )");
-								console.next();
-								continue;
-							}
+				
+				
+				//Change 23/10/2019
+				//Moved if statement into the try catch. Removed need for invalidInput variable. Functionality remains the same.
+				//Not sure why I didn't do this in the first place :/
+				while(true) {
+					System.out.println("Enter Custom Discount Rate Percentage: ");
+					try {
+						customRate = console.nextDouble();
+						if(customRate > 0 && customRate < 100) {
+							break;
+						}else {
+							System.out.println("Please enter a number between 0-100.");
 						}
-						
-						
-						
-						
-						break;
-					}else if(customDiscountRate.toUpperCase().equals("N")) {
-						useCustomRate = false;
-						break;
-					}else {
-						System.out.println("Please use only 'Y' or 'N' Characters to proceed.");
-						
+					}catch(Exception e){
+						System.out.println("Invalid input" + "( "+e+" )");
+						console.next();
+						continue;
 					}
 				}
+				
+				
+				
+				
+				break;
+			}else if(customDiscountRate.toUpperCase().equals("N")) {
+				useCustomRate = false;
+				break;
+			}else {
+				System.out.println("Please use only 'Y' or 'N' Characters to proceed.");
+				
+			}
+		}
 			
 		
 		//Try catch is used to prevent the program from suffering a fatal error should the data file not be present / unreadable		
