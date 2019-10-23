@@ -43,6 +43,7 @@ public class SeatDiscount {
 				//the try catch is used to prevent the program from crashing if the user enters anything other than a double.
 				//if it does catch an exception (InputMismatchException, if text is entered for example) then it will notify the user via the console,
 				//set invalidInput to true, reset the scanner, then continue with the while loop.
+				
 //						while(true) {
 //							invalidInput = false;
 //							System.out.println("Enter Custom Discount Rate Percentage: ");
