@@ -2,6 +2,7 @@ package tutorial12;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Task4 {
@@ -23,7 +24,8 @@ public class Task4 {
 				sum += numbers.get(i);
 			}
 			System.out.println("Average = " + (sum / numbers.size()));
-
+	
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
