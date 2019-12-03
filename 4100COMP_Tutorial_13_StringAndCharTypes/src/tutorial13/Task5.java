@@ -16,7 +16,7 @@ public class Task5 {
 		try {
 			key = console.nextInt();
 		}catch(Exception e){
-			System.out.println("Invalid key\n" + e);
+			System.out.println("Invalid key");
 			e.printStackTrace();
 		}
 		
