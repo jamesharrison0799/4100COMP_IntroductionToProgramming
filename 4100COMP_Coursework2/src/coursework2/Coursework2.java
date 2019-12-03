@@ -11,7 +11,7 @@ public class Coursework2 {
 	static Scanner console = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		menu();
 	}
 
@@ -19,9 +19,8 @@ public class Coursework2 {
 		// clearConsole();
 		System.out.println("- - Seat Booking System - -\n" + "\r\n" + "- - MAIN MENU - -\n" + "1 - Reserve Seat\n"
 				+ "2 - Cancel Seat\n" + "3 - View Seat Reservations\n" + "Q - Quit\n" + "Pick :\n");
-		String menuUserInput = console.nextLine();
 
-		switch (menuUserInput) {
+		switch (console.nextLine().toUpperCase()) {
 		case "1":
 			reserveSeat();
 		case "2":
@@ -36,20 +35,32 @@ public class Coursework2 {
 	}
 
 	public static void reserveSeat() {
-		// Get list of available seats
-		System.out.println(readFile(2, null));
+		// System.out.println(readFile(1, null));
+		for (String i : readFile(1, null)) {
+			System.out.println(i);
+		}
+
 	}
 
 	public static void cancelSeat() {
-		System.out.println("CANCEL SEAT");
+
 	}
 
 	public static void viewReservation() {
-		System.out.println("VIEW RESERVATION");
+
 	}
 
 	public static void quit() {
-		System.out.println("QUIT");
+		System.out.println("The program is about to terminate.\nPress 'y'" + "key to continue, 'n' to return to menu.");
+		switch (console.nextLine()) {
+		case "y":
+			clearConsole();
+			System.exit(0);
+		case "n":
+			menu();
+		default:
+			quit();
+		}
 	}
 
 	public static void menuError(String e) {
