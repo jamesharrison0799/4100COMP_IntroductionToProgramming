@@ -1,26 +1,30 @@
 package coursework2;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Coursework2 {
 
 	static Scanner console = new Scanner(System.in);
-	static Scanner read;
 	static String email;
-	static final String file = "seats.txt";
+	public final String file = "seats.txt";
+
+	static ReadFile readFile = new ReadFile();
 	
 	public static void main(String[] args) {
 	
-		onStart();
+		if(readFile.fileCheck() != null) {
+			System.out.println(readFile.fileCheck());
+			onStart();
+		}else {
+			System.out.println("ERROR: DATA FILE NOT FOUND\nPROGRAM TERMINATED");
+			quit(0);
+		}
+		
 	}
 	
 	public static void onStart() {
+		
 		System.out.println("Welcome to 'GENERIC SEAT BOOKING PROGRAM'!\nFor all your seat booking needs.\nTo start,");
 		setEmail();
 		System.out.printf("Welcome %s\n",email);
@@ -29,7 +33,7 @@ public class Coursework2 {
 	}
 
 	public static void setEmail() {
-		System.out.println("Please enter your email.\n>");
+		System.out.println("Please enter your email address.\n>");
 		email = console.nextLine(); 	
 		//Check email
 		if(!isValidEmail(email)) {
@@ -40,10 +44,7 @@ public class Coursework2 {
 	
 	public static boolean isValidEmail(String email) {
 		//REGEX from https://www.owasp.org/index.php/OWASP_Validation_Regex_Repository
-		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
-                "[a-zA-Z0-9_+&*-]+)*@" + 
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
-                "A-Z]{2,10}$"; 
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,10}$"; 
 		Pattern pat = Pattern.compile(emailRegex);
 		if(email == null) {
 			return false;
@@ -51,11 +52,6 @@ public class Coursework2 {
 		return pat.matcher(email).matches();
 	}
 	
-	public static void readFile(){
-		//DATA FORMAT: SEATNUM CLASS isWindow isAile isWindow PRICE AVALIABILITY/EMAIL
-		
-		
-	}
 	
 	// ---------------MENU---------------
 	public static void menu() {
@@ -74,18 +70,19 @@ public class Coursework2 {
 			viewReservation();
 			menu();
 		case "Q":
-			quit();
+			quit(1);
 		case "4":
 			setEmail();
 			menu();
 		default:
 			menuError("Invalid Selection");
+			menu();
 		}
 	}
 
 	// ---------------Functions---------------
 	public static void reserveSeat() {
-
+		
 	}
 
 	public static void cancelSeat() {
@@ -96,15 +93,19 @@ public class Coursework2 {
 
 	}
 
-	public static void quit() {
-		System.out.println("The program is about to terminate.\nPress 'y'" + "key to continue, 'n' to return to menu.");
-		switch (console.nextLine()) {
-		case "y":
+	public static void quit(int t) {
+		if(t == 0) {
 			System.exit(0);
-		case "n":
-			menu();
-		default:
-			quit();
+		}else {
+			System.out.println("The program is about to terminate.\nPress 'y'" + "key to continue, 'n' to return to menu.");
+			switch (console.nextLine()) {
+			case "y":
+				System.exit(0);
+			case "n":
+				menu();
+			default:
+				quit(1);
+			}
 		}
 	}
 
