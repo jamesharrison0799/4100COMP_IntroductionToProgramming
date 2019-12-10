@@ -52,4 +52,45 @@ public class WriteFile {
 		return b.toString();
 	}
 
+	public void delReservation(String seatNum) {
+		System.out.println(resetLine(readFile.getData("r", seatNum).remove(0).toString()));
+
+		try {
+			BufferedReader file = new BufferedReader(new FileReader(m.file));
+			StringBuffer inputBuffer = new StringBuffer();
+			String line;
+
+			while ((line = file.readLine()) != null) {
+				if (line.contains(seatNum)) {
+					line = resetLine(readFile.getData("r", seatNum).remove(0).toString());
+				}
+				inputBuffer.append(line);
+				inputBuffer.append("\n");
+			}
+			file.close();
+
+			FileOutputStream fileOut = new FileOutputStream(m.file);
+			fileOut.write(inputBuffer.toString().getBytes());
+			fileOut.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String resetLine(String data) {
+		String[] output = data.split(" ");
+		StringBuffer b = new StringBuffer();
+		int dataWidth;
+
+		dataWidth = output.length - 1;
+
+		for (int i = 0; i < dataWidth; i++) {
+			b.append(output[i] + " ");
+		}
+
+		b.append("free");
+
+		return b.toString();
+	}
 }

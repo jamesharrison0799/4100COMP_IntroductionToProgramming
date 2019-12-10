@@ -1,7 +1,6 @@
 package coursework2;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class Coursework2 {
@@ -132,28 +131,58 @@ public class Coursework2 {
 	}
 
 	public static void processReservation() {
-		System.out.println("\nPlease enter the seat number that you would like to reserve (press b to return)\n>>> ");
+		System.out.println("\nPlease enter the seat number that you would like to reserve (press b to return)\n"
+				+ "Note: You can reserve many seats by entering multuple numbers seperated by spaces ( EG: 1A 1B 6D )\n>>> ");
 		String seatNumToReserve = console.nextLine();
-		if (seatNumToReserve.toUpperCase().matches("[1-9][A-Z]")
-				&& readFile.getData("f", null).toString().contains(seatNumToReserve.toUpperCase())) {
-			System.out.printf("Seat Found!\nAttempting to %s!\n", seatNumToReserve);
-			writeFile.addReservation(seatNumToReserve.toUpperCase(), email);
+		if (!seatNumToReserve.toUpperCase().matches("B")) {
+			ArrayList<String> numbers = new ArrayList<String>(Arrays.asList(seatNumToReserve.split(" ")));
+			for (String i : numbers) {
+				if (i.toUpperCase().matches("[1-9][A-Z]")
+						&& readFile.getData("f", null).toString().contains(i.toUpperCase())) {
+					System.out.printf("Seat Found!\nAttempting to %s!\n", i);
+					writeFile.addReservation(i.toUpperCase(), email);
+				}
+			}
 		} else if (seatNumToReserve.toUpperCase().matches("B")) {
 			menu();
 		} else {
-			System.out.println("Invalid Entry.");
+			System.out.println("Invalid Input");
 			processReservation();
 		}
 	}
 
 	public static void cancelSeat() {
+		format.printTableHeader(true);
 		String getType = "r";
 		if (readFile.getData(getType, email) != null) {
 			for (String i : readFile.getData(getType, email)) {
 				System.out.println(format.formatData(i, true));
 			}
 		} else {
-			System.out.println("\n\nSorry!\nThere are no seats avaliable.");
+			System.out.println("\n\nYou have not booked any seats.");
+		}
+		processCancel();
+
+	}
+
+	public static void processCancel() {
+		System.out.println("\nPlease enter the seat number that you would ike to cancel (press b to return)\n"
+				+ "Note: You can cancel many seats by entering multuple numbers seperated by spaces ( EG: 1A 1B 6D )\n>>>");
+		String seatNumToCancel = console.nextLine();
+		if (!seatNumToCancel.toUpperCase().matches("B")) {
+			ArrayList<String> numbers = new ArrayList<String>(Arrays.asList(seatNumToCancel.split(" ")));
+			for (String i : numbers) {
+				if (i.toUpperCase().matches("[1-9][A-Z]")
+						&& readFile.getData("r", email).toString().contains(i.toUpperCase())) {
+					System.out.printf("Seat Found!\n Attempting to cancel reservation for seat %s\n", i);
+					writeFile.delReservation(i.toUpperCase());
+				}
+			}
+		} else if (seatNumToCancel.toUpperCase().matches("B")) {
+			menu();
+		} else {
+			System.out.println("Invalid Input");
+			processCancel();
 		}
 	}
 
