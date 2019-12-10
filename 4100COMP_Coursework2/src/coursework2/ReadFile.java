@@ -12,10 +12,50 @@ public class ReadFile {
 	Scanner reader;
 
 	public String fileCheck() {
-		System.out.println("Checking for the existance of: \""+m.file+"\"");
 		if (new File(m.file).exists()) {
 			return "Data file found...\n";
 		}
 		return null;
+	}
+
+	public void openFile() {
+		try {
+			reader = new Scanner(new FileReader(m.file));
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+			Coursework2.quit(0); // terminates the program
+		}
+	}
+
+	public void closeFile() {
+		reader.close();
+	}
+
+	public ArrayList<String> getData(String type, String e) {
+
+		ArrayList<String> r = new ArrayList<>();
+		openFile();
+		while (reader.hasNext()) {
+			String temp = reader.nextLine();
+			// Reserved
+			if (type == "r") {
+				if (temp.contains(e)) {
+					r.add(temp);
+				}
+			}
+			// Free
+			else if (type == "f") {
+				if (temp.contains("free")) {
+					r.add(temp);
+				}
+			}
+		}
+
+		closeFile();
+		if (r.isEmpty()) {
+			return null;
+		} else {
+			return r;
+		}
 	}
 }
