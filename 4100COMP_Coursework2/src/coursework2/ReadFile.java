@@ -31,21 +31,21 @@ public class ReadFile {
 		reader.close();
 	}
 
-	public ArrayList<String> getData(String type, String e) {
+	public ArrayList<String> getData(String e) {
 
 		ArrayList<String> r = new ArrayList<>();
 		openFile();
 		while (reader.hasNext()) {
 			String temp = reader.nextLine();
 			// Reserved
-			if (type == "r") {
+			if (e != null) {
 				if (temp.contains(e)) {
 					r.add(temp);
 				}
 			}
 			// Free
-			else if (type == "f") {
-				if (temp.contains("free")) {
+			else if (e == null) {
+				if (temp.endsWith("free")) {
 					r.add(temp);
 				}
 			}

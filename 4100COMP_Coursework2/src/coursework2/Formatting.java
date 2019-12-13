@@ -1,11 +1,16 @@
 package coursework2;
 
 import java.util.*;
-
+/**
+ * Formats data for output. Allows important data to be more comprehensible by the end-user.
+ */
 public class Formatting {
 
 	int lineRepeat = 87, lineRepeatWithEmail = 120, lineRepeatMenu = 25;
 
+	/*
+	 * Returns an string with the appropriate amount of "-" chars for a horizontal diving line based on where it will appear.
+	 */
 	public String printDiv(int type) {
 
 		switch (type) {
