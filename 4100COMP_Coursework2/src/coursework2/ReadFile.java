@@ -11,6 +11,7 @@ public class ReadFile {
 
 	Scanner reader;
 
+	// Method to check if data file exists
 	public String fileCheck() {
 		if (new File(m.file).exists()) {
 			return "Data file found...\n";
@@ -18,19 +19,26 @@ public class ReadFile {
 		return null;
 	}
 
+	// Method to open file
 	public void openFile() {
 		try {
 			reader = new Scanner(new FileReader(m.file));
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found");
-			Coursework2.quit(0); // terminates the program
+			Coursework2.quit(true); // terminates the program
 		}
 	}
 
+	// Method to close file
 	public void closeFile() {
 		reader.close();
 	}
 
+	// Returns data in the form of an ArrayList<Stirng> from data file.
+	// Knows to return reserved or unreserved seat data based upon whether a
+	// string variable is passed or a null variable is passed.
+	// If a null variable is passed the program can assume that the user wants to
+	// find unreserved files
 	public ArrayList<String> getData(String e) {
 
 		ArrayList<String> r = new ArrayList<>();

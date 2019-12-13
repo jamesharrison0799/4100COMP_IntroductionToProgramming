@@ -9,18 +9,18 @@ public class WriteFile {
 	ReadFile readFile = new ReadFile();
 	Scanner scan;
 
-	// change type = true - Set Reservation
+	// Method to make changes to the file. Uses seat num as an identifier then
+	// modifies the appropriate line
+	// change type:
+	// = true - Set Reservation
 	// = false - Delete Reservation
 	public void changeReservation(String seatNum, String email) {
-
-		//System.out.println(modifyLine(readFile.getData("r", seatNum).remove(0).toString(), email));
-
 		try {
 			BufferedReader file = new BufferedReader(new FileReader(m.file));
 			StringBuffer inputBuffer = new StringBuffer();
 			String line;
 			String outputText = null;
-			
+
 			while ((line = file.readLine()) != null) {
 				if (line.contains(seatNum)) {
 					if (email != null) {
@@ -39,13 +39,20 @@ public class WriteFile {
 			FileOutputStream fileOut = new FileOutputStream(m.file);
 			fileOut.write(inputBuffer.toString().getBytes());
 			fileOut.close();
-			System.out.printf("Sucessfully %s reservation for seat %s\n",outputText, seatNum);
+			System.out.printf("Sucessfully %s reservation for seat %s\n", outputText, seatNum);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	// Method to change the data being written to the file based on if email is null
+	// if email is not null (ie, user has inputed their email) the program can
+	// assume that they want to add their email to a seat, therefore email is
+	// appended to the string buffer and added to the line in the file.
+	//
+	// if null value is passed the program will remove bookings associated with that
+	// email by appending "free" to the string buffer instead of their email
 	public String modifyLine(String data, String email) {
 		String[] output = data.split(" ");
 		StringBuffer b = new StringBuffer();
