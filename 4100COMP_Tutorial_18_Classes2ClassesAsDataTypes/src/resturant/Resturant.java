@@ -6,6 +6,7 @@ public class Resturant {
 
 	static Scanner input = new Scanner(System.in);
 	static Table[] tables;
+	static Booth[] booths;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -57,6 +58,11 @@ public class Resturant {
 				capacity = 16;
 			}
 			tables[i] = new Table(i + 1, "", capacity);
+		}
+		
+		booths = new Booth[5];
+		for(int i = 0; i < booths.length; i++) {
+			booths[i] = new Booth(i + 9, "" , 4);
 		}
 	}
 
